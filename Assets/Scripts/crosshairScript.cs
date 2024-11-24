@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -14,44 +16,57 @@ public class crosshairScript : MonoBehaviour
     private bool isDragging = false;
     private int targets;
     int targetCount;
+    public GameObject menuPanel;     
+    public TMP_Text GameResult;
+    public AudioClip GunShot; 
+    private AudioSource audioSource; 
+
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         int targetLayer = LayerMask.NameToLayer("Target");
         targetCount = CountObjectsWithLayer(targetLayer);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Handle Mouse Down or Touch Begin
         if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             Vector3 inputPosition = GetInputPosition();
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.nearClipPlane));
 
-            
             if (Vector2.Distance(worldPosition, crosshairTransform.position) < 0.5f)
             {
                 isDragging = true;
             }
         }
 
-        if ((Input.GetMouseButton(0) || Input.touchCount > 0) && isDragging)
+        // Handle Mouse Drag or Touch Drag (moving crosshair)
+        if ((Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && isDragging)
         {
             MoveCrosshair();
-        } else if (isDragging && Input.GetMouseButtonUp(0))
-        {
-            FireBullet(Input.mousePosition);
-            isDragging = false; 
-            ReturnCrosshair();  
         }
-        else if (isDragging && Input.touchCount == 0)
+
+        // Handle Mouse Up or Touch End (Firing)
+        if (isDragging && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)))
         {
-            Touch touch = Input.GetTouch(0);
-            FireBullet(touch.position);            
+            if (Input.touchCount > 0)
+            {
+                // For touch input, fire using the touch position
+                Touch touch = Input.GetTouch(0);
+                FireBullet(touch.position);
+            }
+            else
+            {
+                // For mouse input, fire using the mouse position
+                FireBullet(Input.mousePosition);
+            }
+
             isDragging = false;
-            ReturnCrosshair();  
+            ReturnCrosshair();  // Return crosshair to its original position
         }
     }
 
@@ -90,7 +105,7 @@ public class crosshairScript : MonoBehaviour
 
     private void FireBullet(Vector3 crosshairPosition)
     {
-        //Ray ray = new Ray(crosshairPosition,crosshairPosition.)
+        audioSource.PlayOneShot(GunShot);
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(crosshairPosition);
         Vector2 rayDirection = Vector2.zero;
         RaycastHit2D raycastHit2D = Physics2D.Raycast(worldPosition, rayDirection, 50);
@@ -125,10 +140,14 @@ public class crosshairScript : MonoBehaviour
                 {
                     if (HasNextScene())
                     {
-                        LoadNextScene();
+                        Invoke("LoadNextScene", GunShot.length);
+                        //LoadNextScene();
                     }
                     else
                     {
+                        Invoke("LoadNextScene", GunShot.length);
+                        GameResult.text = "You WIN !!!";
+                        menuPanel.SetActive(true);
                         Debug.Log("You Win !!! Game Over ");
                     }
                 }
