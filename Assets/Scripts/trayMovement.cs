@@ -15,7 +15,7 @@ public class trayMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Calculate camera boundaries based on the camera's position and orthographic size
+        // Calculate camera boundaries based on the camera's position and size
         Camera mainCamera = Camera.main;
         float cameraWidth = mainCamera.orthographicSize * mainCamera.aspect;
         leftBound = mainCamera.transform.position.x - cameraWidth;

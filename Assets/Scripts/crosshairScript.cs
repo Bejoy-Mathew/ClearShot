@@ -16,10 +16,10 @@ public class crosshairScript : MonoBehaviour
     private bool isDragging = false;
     private int targets;
     int targetCount;
-    public GameObject menuPanel;     
+    public GameObject menuPanel;
     public TMP_Text GameResult;
-    public AudioClip GunShot; 
-    private AudioSource audioSource; 
+    public AudioClip GunShot;
+    private AudioSource audioSource;
 
 
     void Start()
@@ -86,10 +86,10 @@ public class crosshairScript : MonoBehaviour
     {
         Vector3 inputPosition = GetInputPosition();
 
-        
+
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.nearClipPlane));
 
-        
+
         float clampedX = Mathf.Clamp(worldPosition.x, -screenBounds.x, screenBounds.x);
         float clampedY = Mathf.Clamp(worldPosition.y, -screenBounds.y, screenBounds.y);
 
@@ -100,7 +100,7 @@ public class crosshairScript : MonoBehaviour
     {
 
         crosshairTransform.position = new Vector3(designatedPosition.x, designatedPosition.y, crosshairTransform.position.z);
-        
+
     }
 
     private void FireBullet(Vector3 crosshairPosition)
@@ -109,12 +109,12 @@ public class crosshairScript : MonoBehaviour
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(crosshairPosition);
         Vector2 rayDirection = Vector2.zero;
         RaycastHit2D raycastHit2D = Physics2D.Raycast(worldPosition, rayDirection, 50);
-        
+
 
         if (raycastHit2D.collider != null)
         {
 
-            
+
             if (raycastHit2D.collider.gameObject.layer == 6)
             {
                 GameObject target = new GameObject();
@@ -124,11 +124,11 @@ public class crosshairScript : MonoBehaviour
 
                 GameObject targetToDestroy;
                 if (raycastHit2D.collider.gameObject.transform.parent == null)
-                {                    
+                {
                     targetToDestroy = raycastHit2D.collider.gameObject;
                 }
                 else
-                {                    
+                {
                     targetToDestroy = raycastHit2D.collider.transform.parent.gameObject;
                 }
 
@@ -160,8 +160,8 @@ public class crosshairScript : MonoBehaviour
     }
 
     int CountObjectsWithLayer(int layer)
-    {        
-        GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);        
+    {
+        GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         int count = 0;
         foreach (GameObject obj in allObjects)
         {

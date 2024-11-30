@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1994241912571901178, guid: f8c7fab8d2a7f3447b444563b19e11c5, type: 3}
   m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   m_FlipX: 0
@@ -963,7 +963,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1726634400890161181, guid: dbc006dd47edd9f45807ebd7db37416a, type: 3}
   m_Color: {r: 0.14818443, g: 0.6981132, b: 0.20432423, a: 1}
   m_FlipX: 0
@@ -1798,11 +1798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3207011481602310270, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.33
+      value: 2.272
       objectReference: {fileID: 0}
     - target: {fileID: 3207011481602310270, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.21
+      value: -3.402
       objectReference: {fileID: 0}
     - target: {fileID: 3207011481602310270, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1840,6 +1840,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bunny
       objectReference: {fileID: 0}
+    - target: {fileID: 3897711136172091603, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
+      propertyPath: gameDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3897711136172091603, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
+      propertyPath: clickableLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3897711136172091603, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
+      propertyPath: hillPositions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3897711136172091603, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
+      propertyPath: 'hillPositions.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1613489773}
+    - target: {fileID: 3897711136172091603, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
+      propertyPath: 'hillPositions.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1620965695}
+    - target: {fileID: 3897711136172091603, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
+      propertyPath: 'hillPositions.Array.data[2]'
+      value: 
+      objectReference: {fileID: 286872305}
+    - target: {fileID: 3897711136172091603, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
+      propertyPath: 'hillPositions.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1584377151}
     - target: {fileID: 8527934717306241128, guid: c2a188459b7914d4899c525977d48cf7, type: 3}
       propertyPath: m_Layer
       value: 0
