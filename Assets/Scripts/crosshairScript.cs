@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -20,7 +21,8 @@ public class crosshairScript : MonoBehaviour
     public TMP_Text GameResult;
     public AudioClip GunShot;
     private AudioSource audioSource;
-
+    public bool isDestroyedByRaycast = false;
+    private ParticleSystem particle;
 
     void Start()
     {
@@ -121,22 +123,14 @@ public class crosshairScript : MonoBehaviour
                 target = raycastHit2D.collider.gameObject;
                 Vector2 direction = (target.transform.position - transform.position).normalized;
                 Debug.DrawRay(transform.position, direction * 5, Color.red);
-
-                GameObject targetToDestroy;
-                if (raycastHit2D.collider.gameObject.transform.parent == null)
-                {
-                    targetToDestroy = raycastHit2D.collider.gameObject;
-                }
-                else
-                {
-                    targetToDestroy = raycastHit2D.collider.transform.parent.gameObject;
-                }
+                               
 
                 Debug.Log("target Hit : " + raycastHit2D.collider.name);
-                Destroy(targetToDestroy);
-                targetCount--;
+                isDestroyedByRaycast = true;
+                StartCoroutine(Destroying(raycastHit2D));
+                targetCount-=2;
 
-                if (targetCount == 0)
+                if (targetCount <= 0)
                 {
                     if (HasNextScene())
                     {
@@ -165,7 +159,7 @@ public class crosshairScript : MonoBehaviour
         int count = 0;
         foreach (GameObject obj in allObjects)
         {
-            if (obj.layer == layer)
+            if (obj.layer == LayerMask.NameToLayer("Target"))
             {
                 count++;
             }
@@ -189,5 +183,39 @@ public class crosshairScript : MonoBehaviour
         {
             Debug.Log("This is the last scene. No next scene to load.");
         }
+    }
+
+    private IEnumerator Destroying(RaycastHit2D raycastHit2D)
+    {
+        SpriteRenderer spriteRenderer = raycastHit2D.collider.gameObject.GetComponent<SpriteRenderer>();
+        AudioSource breakSound=raycastHit2D.collider.gameObject.GetComponent<AudioSource>();
+        GameObject targetToDestroy;
+        if (raycastHit2D.collider.gameObject.transform.parent == null)
+        {
+            targetToDestroy = raycastHit2D.collider.gameObject;
+        }
+        else
+        {
+            targetToDestroy = raycastHit2D.collider.transform.parent.gameObject;
+        }
+
+        particle = raycastHit2D.collider.gameObject.GetComponentInChildren<ParticleSystem>();
+        if (breakSound != null)
+            breakSound.Play();
+
+        if (particle != null)
+        {
+            yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
+            particle.Play();
+        }
+            
+
+           
+
+            spriteRenderer.enabled = false;
+
+            
+            Destroy(targetToDestroy);
+        
     }
 }
