@@ -199,23 +199,31 @@ public class crosshairScript : MonoBehaviour
             targetToDestroy = raycastHit2D.collider.transform.parent.gameObject;
         }
 
-        particle = raycastHit2D.collider.gameObject.GetComponentInChildren<ParticleSystem>();
-        if (breakSound != null)
-            breakSound.Play();
 
+
+        particle = raycastHit2D.collider.gameObject.GetComponentInChildren<ParticleSystem>();
         if (particle != null)
         {
-            yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
-            particle.Play();
-        }
-            
-
-           
-
+            breakSound.Play();
             spriteRenderer.enabled = false;
-
+            particle.Play();
+            yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
             
             Destroy(targetToDestroy);
+        }
+        else 
+        {
+            Destroy(targetToDestroy);
+        }
+
+        //if (breakSound != null)
+            
+
+
+        
+
+            
+            
         
     }
 }

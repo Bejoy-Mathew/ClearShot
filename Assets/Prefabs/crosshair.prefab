@@ -108,6 +108,7 @@ MonoBehaviour:
   menuPanel: {fileID: 0}
   GameResult: {fileID: 0}
   GunShot: {fileID: 8300000, guid: 61ae1e7e4734abe4e9176fd4418ce0ae, type: 3}
+  isDestroyedByRaycast: 0
 --- !u!82 &377535784539902772
 AudioSource:
   m_ObjectHideFlags: 0
