@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2149830285626385782, guid: 7ac4b4c1dda401e469935fa17ce9ead9, type: 3}
       propertyPath: m_Name
-      value: Bottle_G Variant
+      value: Straight Bottle (Green)
       objectReference: {fileID: 0}
     - target: {fileID: 2564100680204840635, guid: 7ac4b4c1dda401e469935fa17ce9ead9, type: 3}
       propertyPath: m_Enabled

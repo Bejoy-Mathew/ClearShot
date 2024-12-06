@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6476811018643396453, guid: eba23fe14be0a6647984b186e38710ca, type: 3}
       propertyPath: m_Name
-      value: Bottle Variant
+      value: Straight Bottle
       objectReference: {fileID: 0}
     - target: {fileID: 6897074070137856906, guid: eba23fe14be0a6647984b186e38710ca, type: 3}
       propertyPath: m_LocalScale.x
