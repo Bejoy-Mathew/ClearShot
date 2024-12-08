@@ -12,6 +12,9 @@ public class crosshairScript : MonoBehaviour
 {
     [SerializeField] private Transform crosshairTransform;
     [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private int bullets;
+    [SerializeField] private float gameTime;
+    public TMP_Text bulletCount;
     private Vector2 designatedPosition = new Vector2(0, -3.5f);
     private Vector2 screenBounds;
     private bool isDragging = false;
@@ -20,56 +23,80 @@ public class crosshairScript : MonoBehaviour
     public GameObject menuPanel;
     public TMP_Text GameResult;
     public AudioClip GunShot;
+    public AudioClip EmptyGunShot;
     private AudioSource audioSource;
     public bool isDestroyedByRaycast = false;
     private ParticleSystem particle;
+    private float timeLimit ; 
+    private bool isGameActive = false;
+    public TMP_Text timerText;
+    public GameObject gamePanel;
+    int currentBullet;
+    int destroyedCount;
 
     void Start()
     {
+        GameManager.Instance.destroyedTargets = 0;
+        GameManager.Instance.gameResult = "";
+        GameManager.Instance.lastLevelBuildIndex=SceneManager.GetActiveScene().buildIndex;
+        destroyedCount = 0;
+        gamePanel.SetActive(true);
+        Time.timeScale = 0;
+        timeLimit = gameTime;        
         audioSource = GetComponent<AudioSource>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         int targetLayer = LayerMask.NameToLayer("Target");
         targetCount = CountObjectsWithLayer(targetLayer);
+        currentBullet = bullets;
+        bulletCount.text = currentBullet.ToString();
+        GameManager.Instance.stars = 0;
     }
 
     void Update()
     {
-        // Handle Mouse Down or Touch Begin
-        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
-        {
-            Vector3 inputPosition = GetInputPosition();
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.nearClipPlane));
+        if (isGameActive)
+            timer();
 
-            if (Vector2.Distance(worldPosition, crosshairTransform.position) < 0.5f)
-            {
-                isDragging = true;
-            }
-        }
-
-        // Handle Mouse Drag or Touch Drag (moving crosshair)
-        if ((Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && isDragging)
+        if(isGameActive && Time.timeScale!=0)
         {
-            MoveCrosshair();
-        }
+            
+            if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+            {
+                Vector3 inputPosition = GetInputPosition();
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.nearClipPlane));
 
-        // Handle Mouse Up or Touch End (Firing)
-        if (isDragging && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)))
-        {
-            if (Input.touchCount > 0)
-            {
-                // For touch input, fire using the touch position
-                Touch touch = Input.GetTouch(0);
-                FireBullet(touch.position);
-            }
-            else
-            {
-                // For mouse input, fire using the mouse position
-                FireBullet(Input.mousePosition);
+                if (Vector2.Distance(worldPosition, crosshairTransform.position) < 0.5f)
+                {
+                    isDragging = true;
+                }
             }
 
-            isDragging = false;
-            ReturnCrosshair();  // Return crosshair to its original position
+            
+            if ((Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)) && isDragging)
+            {
+                MoveCrosshair();
+            }
+
+            
+            if (isDragging && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)))
+            {
+                if (Input.touchCount > 0)
+                {
+                    
+                    Touch touch = Input.GetTouch(0);
+                    FireBullet(touch.position);
+                }
+                else
+                {
+                    
+                    FireBullet(Input.mousePosition);
+                }
+
+                isDragging = false;
+                ReturnCrosshair();  
+            }
         }
+        
     }
 
     private Vector3 GetInputPosition()
@@ -95,7 +122,7 @@ public class crosshairScript : MonoBehaviour
         float clampedX = Mathf.Clamp(worldPosition.x, -screenBounds.x, screenBounds.x);
         float clampedY = Mathf.Clamp(worldPosition.y, -screenBounds.y, screenBounds.y);
 
-        // Set the new crosshair position
+        
         crosshairTransform.position = new Vector3(clampedX, clampedY, crosshairTransform.position.z);
     }
     private void ReturnCrosshair()
@@ -107,63 +134,111 @@ public class crosshairScript : MonoBehaviour
 
     private void FireBullet(Vector3 crosshairPosition)
     {
-        audioSource.PlayOneShot(GunShot);
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(crosshairPosition);
-        Vector2 rayDirection = Vector2.zero;
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(worldPosition, rayDirection, 50);
-
-
-        if (raycastHit2D.collider != null)
+        if (currentBullet > 0)
         {
+            currentBullet--;
+            bulletCount.text = currentBullet.ToString();
+            audioSource.PlayOneShot(GunShot);
 
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(crosshairPosition);
+            Vector2 rayDirection = Vector2.zero;
+            RaycastHit2D[] allHits = Physics2D.RaycastAll(worldPosition, rayDirection, 1f);
 
-            if (raycastHit2D.collider.gameObject.layer == 6)
+            List<RaycastHit2D> sortedHits = new List<RaycastHit2D>(allHits);
+            sortedHits.Sort((a, b) =>
             {
-                GameObject target = new GameObject();
-                target = raycastHit2D.collider.gameObject;
-                Vector2 direction = (target.transform.position - transform.position).normalized;
-                Debug.DrawRay(transform.position, direction * 5, Color.red);
-                               
+                SpriteRenderer rendererA = a.collider.GetComponent<SpriteRenderer>();
+                SpriteRenderer rendererB = b.collider.GetComponent<SpriteRenderer>();
 
-                Debug.Log("target Hit : " + raycastHit2D.collider.name);
-                isDestroyedByRaycast = true;
-                StartCoroutine(Destroying(raycastHit2D));
-                targetCount-=2;
 
-                if (targetCount <= 0)
+                if (rendererA != null && rendererB != null)
                 {
-                    if (HasNextScene())
+                    return rendererB.sortingOrder.CompareTo(rendererA.sortingOrder);
+                }
+                return 0;
+            });
+
+            foreach (RaycastHit2D hit in sortedHits)
+            {
+
+                if (hit.collider != null && ((1 << hit.collider.gameObject.layer) & targetLayer) != 0)
+                {
+                    SpriteRenderer hitRenderer = hit.collider.GetComponent<SpriteRenderer>();
+
+
+                    if (hitRenderer != null && hitRenderer.sortingOrder == sortedHits[0].collider.GetComponent<SpriteRenderer>().sortingOrder)
                     {
-                        Invoke("LoadNextScene", GunShot.length);
-                        //LoadNextScene();
+                        GameObject target = new GameObject();
+                        target = hit.collider.gameObject;
+                        Vector2 direction = (target.transform.position - transform.position).normalized;
+                        Debug.DrawRay(transform.position, direction * 5, Color.red);
+
+
+                        Debug.Log("target Hit : " + hit.collider.name);
+                        isDestroyedByRaycast = true;
+                        StartCoroutine(Destroying(hit));
+
+                        //targetCount -= 2;
+                        //if (targetCount <= 0)
+                        //{
+                        //    if (HasNextScene())
+                        //    {
+                        //        Invoke("LoadNextScene", GunShot.length);
+                                
+                        //    }
+                        //    else
+                        //    {
+                        //        Invoke("LoadNextScene", GunShot.length);
+                        //        GameResult.text = "You WIN !!!";
+                        //        menuPanel.SetActive(true);
+                        //        Debug.Log("You Win !!! Game Over ");
+                        //    }
+                        //}
                     }
                     else
                     {
-                        Invoke("LoadNextScene", GunShot.length);
-                        GameResult.text = "You WIN !!!";
-                        menuPanel.SetActive(true);
-                        Debug.Log("You Win !!! Game Over ");
+                        Debug.Log("you have hit environment");
                     }
                 }
             }
-            else
-            {
-                Debug.Log("you have hit environment");
-            }
         }
+        else
+        {
+            audioSource.PlayOneShot(EmptyGunShot);
+        }
+        
+
+            
     }
 
     int CountObjectsWithLayer(int layer)
     {
+        //GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        //int count = 0;
+        //foreach (GameObject obj in allObjects)
+        //{
+        //    if (obj.layer == LayerMask.NameToLayer("Target"))
+        //    {
+        //        count++;
+        //    }
+        //}
+        //return count;
+
+        int layerC = LayerMask.NameToLayer("Target");
         GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         int count = 0;
+
         foreach (GameObject obj in allObjects)
         {
-            if (obj.layer == LayerMask.NameToLayer("Target"))
+            // Check if the object has a SpriteRenderer, a Collider, and is in the specified layer
+            if (obj.layer == layerC &&
+                obj.GetComponent<SpriteRenderer>() != null &&
+                (obj.GetComponent<Collider2D>() != null || obj.GetComponent<Collider>() != null))
             {
                 count++;
             }
         }
+
         return count;
     }
 
@@ -199,8 +274,6 @@ public class crosshairScript : MonoBehaviour
             targetToDestroy = raycastHit2D.collider.transform.parent.gameObject;
         }
 
-
-
         particle = raycastHit2D.collider.gameObject.GetComponentInChildren<ParticleSystem>();
         if (particle != null)
         {
@@ -210,20 +283,46 @@ public class crosshairScript : MonoBehaviour
             yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
             
             Destroy(targetToDestroy);
+            
         }
         else 
         {
             Destroy(targetToDestroy);
         }
-
-        //if (breakSound != null)
-            
-
-
+        destroyedCount++;
+        GameManager.Instance.RegisterTargetDestroyed(targetToDestroy);
+        GameManager.Instance.timeRemaing = timeLimit;
         
 
-            
-            
-        
+    }
+
+    private void timer()
+    {
+        if (isGameActive)
+        {
+            timeLimit -= Time.deltaTime;
+            timerText.text = Mathf.Ceil(timeLimit).ToString();
+
+            if (timeLimit <= 0)
+            {
+                OnTimeUp();
+            }
+        }
+    }
+
+    void OnTimeUp()
+    {
+        isGameActive = false;
+        Debug.Log("Time's up!");
+        Time.timeScale = 0;
+        GameManager.Instance.gameResult = "Time's Up !!! \n Game Over";
+        SceneManager.LoadScene("TransitionScene");
+    }
+
+    public void GameStart()
+    {        
+        gamePanel.SetActive(false);
+        isGameActive = true;
+        Time.timeScale = 1;
     }
 }

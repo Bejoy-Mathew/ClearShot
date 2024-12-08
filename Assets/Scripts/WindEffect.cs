@@ -8,10 +8,7 @@ public class WindEffect : MonoBehaviour
 
     void Update()
     {
-        // Smoothly change the wind strength over time
         currentWindStrength = Mathf.Lerp(currentWindStrength, Random.Range(-maxWindStrength, maxWindStrength), windChangeSpeed * Time.deltaTime);
-
-        // Apply the wind effect to all bottles
         foreach (var bottle in FindObjectsByType<BottleSway>(FindObjectsSortMode.None))
         {
             bottle.windStrength = currentWindStrength;

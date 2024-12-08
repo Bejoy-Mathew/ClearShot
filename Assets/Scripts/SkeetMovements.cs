@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class SkeetMovements: MonoBehaviour
 {
-    public float speed; // Speed of the skeet
-    public float height ; // Maximum height of the arc
+    public float speed; 
+    public float height ; 
     public GameObject menuPanel;
     private Vector2 startPosition;
     private Vector2 targetPosition;
@@ -16,12 +16,10 @@ public class SkeetMovements: MonoBehaviour
 
     void Start()
     {
-        //making the panel deactive at start so game play can be seen
+        
         menuPanel.SetActive(false);
-        // Get the start position from the current position of the skeet
         startPosition = transform.position;
 
-        // Calculate the target position (opposite edge of the camera)
         Camera cam = Camera.main;
         Vector2 screenBounds = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
         targetPosition = new Vector2(-startPosition.x, startPosition.y);
@@ -29,11 +27,9 @@ public class SkeetMovements: MonoBehaviour
 
     void Update()
     {
-        // Calculate the time alive normalized between 0 and 1
         timeAlive += Time.deltaTime * speed;
         float t = Mathf.Clamp01(timeAlive);
 
-        // Calculate the position along the arc
         float x = Mathf.Lerp(startPosition.x, targetPosition.x, t);
         float y = Mathf.Lerp(startPosition.y, targetPosition.y, t) + height * Mathf.Sin(t * Mathf.PI); // Parabolic arc just to mimic the gravity arc
 
