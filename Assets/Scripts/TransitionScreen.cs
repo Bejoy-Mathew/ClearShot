@@ -17,6 +17,8 @@ public class TransitionScreen : MonoBehaviour
             btn.gameObject.SetActive(false);
         }
 
+       
+
         for (int i = 0; i < GameManager.Instance.stars; i++) 
         {
             stars[i].gameObject.SetActive(true);
@@ -35,7 +37,7 @@ public class TransitionScreen : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        int lastLevelIndex = GameManager.Instance.lastLevelBuildIndex;
+        int lastLevelIndex = GameManager.Instance.lastLevelBuildIndex+1;
         int nextLevelIndex = lastLevelIndex + 1;
         
         if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
@@ -49,7 +51,7 @@ public class TransitionScreen : MonoBehaviour
     public void Replay()
     {
         int lastLevelIndex = GameManager.Instance.lastLevelBuildIndex;
-        int nextLevelIndex = lastLevelIndex;        
+        int nextLevelIndex = lastLevelIndex+1;        
         if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
         {
             string nextLevelName = "Level " + (nextLevelIndex);

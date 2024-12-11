@@ -105,10 +105,17 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+  bullets: 0
+  gameTime: 0
+  bulletCount: {fileID: 0}
   menuPanel: {fileID: 0}
   GameResult: {fileID: 0}
   GunShot: {fileID: 8300000, guid: 61ae1e7e4734abe4e9176fd4418ce0ae, type: 3}
+  EmptyGunShot: {fileID: 0}
   isDestroyedByRaycast: 0
+  timerText: {fileID: 0}
+  gamePanel: {fileID: 0}
+  _currentLevelCondition: {fileID: 0}
 --- !u!82 &377535784539902772
 AudioSource:
   m_ObjectHideFlags: 0

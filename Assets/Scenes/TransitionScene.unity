@@ -285,7 +285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1821789101}
-  stars: []
+  stars:
+  - {fileID: 1814728748}
+  - {fileID: 108241583}
+  - {fileID: 1959203651}
 --- !u!4 &56772410
 Transform:
   m_ObjectHideFlags: 0
@@ -1022,10 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1821789101}
-  stars:
-  - {fileID: 1814728748}
-  - {fileID: 108241583}
-  - {fileID: 1959203651}
+  stars: []
 --- !u!114 &732732080
 MonoBehaviour:
   m_ObjectHideFlags: 0
