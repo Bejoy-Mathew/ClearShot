@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d1b4e5d48812640887e65f5cd4a181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 1821789101}
   stars: []
 --- !u!4 &56772410
 Transform:

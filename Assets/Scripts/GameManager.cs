@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public LevelCondition currentLevelCondition;
-
     public int destroyedTargets = 0;
     public int lastLevelBuildIndex;
     public float timeRemaing;

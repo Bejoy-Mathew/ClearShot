@@ -534,6 +534,10 @@ PrefabInstance:
       propertyPath: EmptyGunShot
       value: 
       objectReference: {fileID: 8300000, guid: 804f58199719f2943a4d5cc4093a9ea8, type: 3}
+    - target: {fileID: -244935860421411680, guid: adafa50570205a744a46789a84b29248, type: 3}
+      propertyPath: _currentLevelCondition
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ee15d3527d956648beccbc4752e05b4, type: 2}
     - target: {fileID: 2246048631041177908, guid: adafa50570205a744a46789a84b29248, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.25

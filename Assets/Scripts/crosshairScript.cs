@@ -33,12 +33,14 @@ public class crosshairScript : MonoBehaviour
     public GameObject gamePanel;
     int currentBullet;
     int destroyedCount;
+    public LevelCondition _currentLevelCondition;
 
     void Start()
     {
         GameManager.Instance.destroyedTargets = 0;
         GameManager.Instance.gameResult = "";
         GameManager.Instance.lastLevelBuildIndex=SceneManager.GetActiveScene().buildIndex;
+        GameManager.Instance.currentLevelCondition = _currentLevelCondition;
         destroyedCount = 0;
         gamePanel.SetActive(true);
         Time.timeScale = 0;
