@@ -343,6 +343,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.0000023983343
       objectReference: {fileID: 0}
+    - target: {fileID: 8602065649181946784, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8759193797254062610, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.11973166
@@ -350,6 +354,10 @@ PrefabInstance:
     - target: {fileID: 8759193797254062610, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.009242122
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996727642321482744, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -676,6 +684,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.08185435
       objectReference: {fileID: 0}
+    - target: {fileID: 244358351053522734, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 715013857345968907, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.119434424
@@ -856,6 +868,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.000003611392
       objectReference: {fileID: 0}
+    - target: {fileID: 6404563604636174208, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6560415049085895303, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.07614752
@@ -907,7 +923,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -244935860421411680, guid: adafa50570205a744a46789a84b29248, type: 3}
       propertyPath: bullets
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -244935860421411680, guid: adafa50570205a744a46789a84b29248, type: 3}
       propertyPath: gameTime
@@ -1013,6 +1029,10 @@ PrefabInstance:
     - target: {fileID: 129041414134298053, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.010089539
+      objectReference: {fileID: 0}
+    - target: {fileID: 244358351053522734, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 715013857345968907, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1185,6 +1205,10 @@ PrefabInstance:
     - target: {fileID: 6341433582492769621, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.000001694576
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404563604636174208, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6560415049085895303, guid: afba889d1c7ae7f40be54711c45cdb7b, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1467,6 +1491,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.0000017593958
       objectReference: {fileID: 0}
+    - target: {fileID: 8602065649181946784, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8759193797254062610, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.119731754
@@ -1474,6 +1502,10 @@ PrefabInstance:
     - target: {fileID: 8759193797254062610, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.007380573
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996727642321482744, guid: 6366e99e0dbc3c4448f7822e2193c25a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1601,7 +1633,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 3737897332693287829, guid: 9e6abf3e8963f1b45a4e10cd3779c39e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1646,7 +1678,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_text
-      value: Destroy bottles before the timer runs out.
+      value: This time they swing, shoot them all!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7223258198808338452, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

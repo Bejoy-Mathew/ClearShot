@@ -205,7 +205,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_text
-      value: 'Destroy all the bottles within the time. '
+      value: "Destroy all the bottles within the given time.  \nBe careful, They
+        move!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7223258198808338452, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -965,11 +974,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -244935860421411680, guid: adafa50570205a744a46789a84b29248, type: 3}
       propertyPath: bullets
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -244935860421411680, guid: adafa50570205a744a46789a84b29248, type: 3}
       propertyPath: gameTime
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -244935860421411680, guid: adafa50570205a744a46789a84b29248, type: 3}
       propertyPath: gamePanel

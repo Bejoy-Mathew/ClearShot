@@ -137,7 +137,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_text
-      value: 'No real Bunny will be harmed. '
+      value: 'No real Bunnies will be harmed in this level.
+
+        (Because these
+        are Hare''s)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7223258198808338452, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
