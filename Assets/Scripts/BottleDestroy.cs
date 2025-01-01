@@ -5,7 +5,12 @@ using static UnityEngine.ParticleSystem;
 public class BottleDestroy : MonoBehaviour
 {
     int destroyedCount;
+    AudioManager audioManager;
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Update()
     {
@@ -19,15 +24,8 @@ public class BottleDestroy : MonoBehaviour
 
     IEnumerator playDestroy()
     {
-        AudioSource soundEffect = GetComponent<AudioSource>();
-        if (soundEffect != null)
-        {
-            soundEffect.Play();
-        }
-        else
-        {
-            Debug.LogWarning("No AudioSource found on the GameObject.");
-        }
+
+        audioManager.PlaySfx(audioManager.bottleBreaking);
 
        
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();

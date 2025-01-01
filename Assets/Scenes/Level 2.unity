@@ -203,27 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
-      propertyPath: m_text
-      value: "Destroy all the bottles within the given time.  \nBe careful, They
-        move!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6896403228923378114, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7223258198808338452, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1387175501}
-    - target: {fileID: 7223258198808338452, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameStart
-      objectReference: {fileID: 0}
     - target: {fileID: 7945328114233115458, guid: 2e63b0c9ff6cf78468eb98b19db51242, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1690,6 +1673,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &2090220583
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1933361353883932274, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935246438522260872, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 074837ace0dcf1b4cbcdaeb3cd8f2f07, type: 3}
 --- !u!1001 &2098095663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1842,3 +1882,4 @@ SceneRoots:
   - {fileID: 1741665454}
   - {fileID: 1706527002}
   - {fileID: 847874639}
+  - {fileID: 2090220583}

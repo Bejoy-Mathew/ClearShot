@@ -25,7 +25,7 @@ public class TransitionScreen : MonoBehaviour
         }
 
         int lastLevelIndex = GameManager.Instance.lastLevelBuildIndex;
-        int nextLevelIndex = lastLevelIndex + 1;
+        int nextLevelIndex = lastLevelIndex;
         if (nextLevelIndex == SceneManager.sceneCountInBuildSettings)
         {
             Button btn = GameObject.Find("PlayBtn").GetComponent<Button>();
@@ -38,7 +38,7 @@ public class TransitionScreen : MonoBehaviour
     public void LoadNextLevel()
     {
         int lastLevelIndex = GameManager.Instance.lastLevelBuildIndex+1;
-        int nextLevelIndex = lastLevelIndex + 1;
+        int nextLevelIndex = lastLevelIndex;
         
         if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
         {
@@ -51,7 +51,7 @@ public class TransitionScreen : MonoBehaviour
     public void Replay()
     {
         int lastLevelIndex = GameManager.Instance.lastLevelBuildIndex;
-        int nextLevelIndex = lastLevelIndex+1;        
+        int nextLevelIndex = lastLevelIndex;        
         if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
         {
             string nextLevelName = "Level " + (nextLevelIndex);

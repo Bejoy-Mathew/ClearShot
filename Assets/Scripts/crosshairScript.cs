@@ -21,10 +21,7 @@ public class crosshairScript : MonoBehaviour
     private int targets;
     int targetCount;
     public GameObject menuPanel;
-    public TMP_Text GameResult;
-    public AudioClip GunShot;
-    public AudioClip EmptyGunShot;
-    private AudioSource audioSource;
+    public TMP_Text GameResult;    
     public bool isDestroyedByRaycast = false;
     private ParticleSystem particle;
     private float timeLimit ; 
@@ -34,9 +31,16 @@ public class crosshairScript : MonoBehaviour
     int currentBullet;
     int destroyedCount;
     public LevelCondition _currentLevelCondition;
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
+
         GameManager.Instance.destroyedTargets = 0;
         GameManager.Instance.gameResult = "";
         GameManager.Instance.lastLevelBuildIndex=SceneManager.GetActiveScene().buildIndex;
@@ -44,14 +48,14 @@ public class crosshairScript : MonoBehaviour
         destroyedCount = 0;
         gamePanel.SetActive(true);
         Time.timeScale = 0;
-        timeLimit = gameTime;        
-        audioSource = GetComponent<AudioSource>();
+        timeLimit = gameTime;                
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         int targetLayer = LayerMask.NameToLayer("Target");
         targetCount = CountObjectsWithLayer(targetLayer);
         currentBullet = bullets;
         bulletCount.text = currentBullet.ToString();
-        GameManager.Instance.stars = 0;
+        GameManager.Instance.stars = 0;        
+
     }
 
     void Update()
@@ -140,7 +144,7 @@ public class crosshairScript : MonoBehaviour
         {
             currentBullet--;
             bulletCount.text = currentBullet.ToString();
-            audioSource.PlayOneShot(GunShot);
+            audioManager.PlaySfx(audioManager.gunShot);
 
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(crosshairPosition);
             Vector2 rayDirection = Vector2.zero;
@@ -179,23 +183,7 @@ public class crosshairScript : MonoBehaviour
                         Debug.Log("target Hit : " + hit.collider.name);
                         isDestroyedByRaycast = true;
                         StartCoroutine(Destroying(hit));
-
-                        //targetCount -= 2;
-                        //if (targetCount <= 0)
-                        //{
-                        //    if (HasNextScene())
-                        //    {
-                        //        Invoke("LoadNextScene", GunShot.length);
-                                
-                        //    }
-                        //    else
-                        //    {
-                        //        Invoke("LoadNextScene", GunShot.length);
-                        //        GameResult.text = "You WIN !!!";
-                        //        menuPanel.SetActive(true);
-                        //        Debug.Log("You Win !!! Game Over ");
-                        //    }
-                        //}
+                        
                     }
                     else
                     {
@@ -206,7 +194,7 @@ public class crosshairScript : MonoBehaviour
         }
         else
         {
-            audioSource.PlayOneShot(EmptyGunShot);
+            audioManager.PlaySfx(audioManager.emptyGunShot);
         }
         
 
@@ -214,17 +202,7 @@ public class crosshairScript : MonoBehaviour
     }
 
     int CountObjectsWithLayer(int layer)
-    {
-        //GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-        //int count = 0;
-        //foreach (GameObject obj in allObjects)
-        //{
-        //    if (obj.layer == LayerMask.NameToLayer("Target"))
-        //    {
-        //        count++;
-        //    }
-        //}
-        //return count;
+    {        
 
         int layerC = LayerMask.NameToLayer("Target");
         GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
@@ -232,7 +210,7 @@ public class crosshairScript : MonoBehaviour
 
         foreach (GameObject obj in allObjects)
         {
-            // Check if the object has a SpriteRenderer, a Collider, and is in the specified layer
+            
             if (obj.layer == layerC &&
                 obj.GetComponent<SpriteRenderer>() != null &&
                 (obj.GetComponent<Collider2D>() != null || obj.GetComponent<Collider>() != null))
