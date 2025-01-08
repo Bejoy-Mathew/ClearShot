@@ -20,9 +20,9 @@ public class crosshairScript : MonoBehaviour
     private bool isDragging = false;
     private int targets;
     int targetCount;
-    public GameObject menuPanel;
-    public TMP_Text GameResult;    
-    public bool isDestroyedByRaycast = false;
+    //public GameObject menuPanel;
+    //public TMP_Text GameResult;    
+    //public bool isDestroyedByRaycast = false;
     private ParticleSystem particle;
     private float timeLimit ; 
     private bool isGameActive = false;
@@ -40,7 +40,7 @@ public class crosshairScript : MonoBehaviour
 
     void Start()
     {
-
+        GameManager.Instance.bulletRemaining += bullets;
         GameManager.Instance.destroyedTargets = 0;
         GameManager.Instance.gameResult = "";
         GameManager.Instance.lastLevelBuildIndex=SceneManager.GetActiveScene().buildIndex;
@@ -52,7 +52,7 @@ public class crosshairScript : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         int targetLayer = LayerMask.NameToLayer("Target");
         targetCount = CountObjectsWithLayer(targetLayer);
-        currentBullet = bullets;
+        currentBullet = GameManager.Instance.bulletRemaining;
         bulletCount.text = currentBullet.ToString();
         GameManager.Instance.stars = 0;        
 
@@ -88,14 +88,15 @@ public class crosshairScript : MonoBehaviour
             {
                 if (Input.touchCount > 0)
                 {
-                    
-                    Touch touch = Input.GetTouch(0);
-                    FireBullet(touch.position);
+                    //Touch touch = Input.GetTouch(0);                    
+                    //FireBullet(touch.position);
+                    FireBullet(crosshairTransform.transform.position);
+
                 }
                 else
-                {
-                    
-                    FireBullet(Input.mousePosition);
+                {                    
+                    //FireBullet(Input.mousePosition);
+                    FireBullet(crosshairTransform.transform.position);
                 }
 
                 isDragging = false;
@@ -129,7 +130,7 @@ public class crosshairScript : MonoBehaviour
         float clampedY = Mathf.Clamp(worldPosition.y, -screenBounds.y, screenBounds.y);
 
         
-        crosshairTransform.position = new Vector3(clampedX, clampedY, crosshairTransform.position.z);
+        crosshairTransform.position = new Vector3(clampedX, clampedY+1, crosshairTransform.position.z);
     }
     private void ReturnCrosshair()
     {
@@ -143,12 +144,13 @@ public class crosshairScript : MonoBehaviour
         if (currentBullet > 0)
         {
             currentBullet--;
+            GameManager.Instance.bulletRemaining--;
             bulletCount.text = currentBullet.ToString();
             audioManager.PlaySfx(audioManager.gunShot);
 
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(crosshairPosition);
             Vector2 rayDirection = Vector2.zero;
-            RaycastHit2D[] allHits = Physics2D.RaycastAll(worldPosition, rayDirection, 1f);
+            RaycastHit2D[] allHits = Physics2D.RaycastAll(transform.position, rayDirection, 1f);
 
             List<RaycastHit2D> sortedHits = new List<RaycastHit2D>(allHits);
             sortedHits.Sort((a, b) =>
@@ -181,7 +183,7 @@ public class crosshairScript : MonoBehaviour
 
 
                         Debug.Log("target Hit : " + hit.collider.name);
-                        isDestroyedByRaycast = true;
+                        //isDestroyedByRaycast = true;
                         StartCoroutine(Destroying(hit));
                         
                     }

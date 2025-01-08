@@ -2,14 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
 public class TransitionScreen : MonoBehaviour
 {
     public TMP_Text scoreText;
-    public GameObject[] stars;
+    public GameObject[] stars = new GameObject[3];
 
     void Start()
     {
+        
         scoreText.text = GameManager.Instance.gameResult;
         if (GameManager.Instance.stars < 2)
         {
@@ -21,7 +23,7 @@ public class TransitionScreen : MonoBehaviour
 
         for (int i = 0; i < GameManager.Instance.stars; i++) 
         {
-            stars[i].gameObject.SetActive(true);
+            stars[i].SetActive(true);
         }
 
         int lastLevelIndex = GameManager.Instance.lastLevelBuildIndex;
@@ -32,6 +34,7 @@ public class TransitionScreen : MonoBehaviour
             btn.gameObject.SetActive(false);
             scoreText.text = "You WON all of it !!!";
         }
+        
     }
 
 

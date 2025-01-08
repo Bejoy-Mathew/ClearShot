@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0b517ae3e07b249a74a12f799ac316, type: 3}
   m_Name: Level2Condition
   m_EditorClassIdentifier: 
-  totalTargetsToDestroy: 6
-  greenBottleTargetsToDestroy: 2
-  brownBottleTargetsToDestroy: 4
-  bigBrownBottleTargetsToDestroy: 0
+  totalTargetsToDestroy: 4

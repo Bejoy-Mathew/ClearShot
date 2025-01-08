@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int stars = 0;
     public int levelScore = 0;
     public string gameResult="";
+    public int bulletRemaining = 0;
 
     private void Awake()
     {
@@ -59,9 +60,9 @@ public class GameManager : MonoBehaviour
     private int CalculateStars()
     {
         
-        if (destroyedTargets > currentLevelCondition.totalTargetsToDestroy && timeRemaing>10)
+        if (destroyedTargets >= currentLevelCondition.totalTargetsToDestroy && timeRemaing>5 && bulletRemaining>1)
             return 3; 
-        if (destroyedTargets >= currentLevelCondition.totalTargetsToDestroy && timeRemaing > 10 || levelScore>350)
+        if (destroyedTargets >= currentLevelCondition.totalTargetsToDestroy && timeRemaing > 1 )
             return 2; 
         else
         return 1; 
