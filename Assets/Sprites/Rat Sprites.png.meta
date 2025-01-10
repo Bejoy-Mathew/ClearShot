@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: e5d52c719f4f68e438036d743feb4d26
+guid: 039475abe60f30540a8665cc656bb97c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9042028117199634284
-    second: Back Button_0
+      213: 6510422160639562542
+    second: Rat Sprites_0
+  - first:
+      213: -983049412070675442
+    second: Rat Sprites_1
+  - first:
+      213: 493115499465187561
+    second: Rat Sprites_2
+  - first:
+      213: 6696426892415479603
+    second: Rat Sprites_3
+  - first:
+      213: -7045889520441708288
+    second: Rat Sprites_4
+  - first:
+      213: -7143713113828387670
+    second: Rat Sprites_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,45 +99,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Win64
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -148,30 +124,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Back Button_0
+      name: Rat Sprites_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 468
-        height: 381
+        x: 322
+        y: 1428
+        width: 1094
+        height: 354
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,8 +143,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 490c8398553448280800000000000000
-      internalID: -9042028117199634284
+      spriteID: e2390ce167aa95a50800000000000000
+      internalID: 6510422160639562542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat Sprites_1
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 1383
+        width: 1118
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0ceed4a4c18b52f0800000000000000
+      internalID: -983049412070675442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat Sprites_2
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 826
+        width: 950
+        height: 380
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e0acd22fe5e7d600800000000000000
+      internalID: 493115499465187561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat Sprites_3
+      rect:
+        serializedVersion: 2
+        x: 1665
+        y: 814
+        width: 828
+        height: 349
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33f2cca87cc7eec50800000000000000
+      internalID: 6696426892415479603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat Sprites_4
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 205
+        width: 986
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 001bc67dfc8f73e90800000000000000
+      internalID: -7045889520441708288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat Sprites_5
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 197
+        width: 1256
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa495f0a5ce6cdc90800000000000000
+      internalID: -7143713113828387670
       vertices: []
       indices: 
       edges: []
@@ -199,8 +272,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Back Button_0: -9042028117199634284
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

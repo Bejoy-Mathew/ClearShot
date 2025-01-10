@@ -108,12 +108,6 @@ MonoBehaviour:
   bullets: 0
   gameTime: 0
   bulletCount: {fileID: 0}
-  menuPanel: {fileID: 0}
-  GameResult: {fileID: 0}
-  GunShot: {fileID: 8300000, guid: 61ae1e7e4734abe4e9176fd4418ce0ae, type: 3}
-  EmptyGunShot: {fileID: 8300000, guid: 804f58199719f2943a4d5cc4093a9ea8, type: 3}
-  BackgroundMusic: {fileID: 8300000, guid: 642e5b463b4b67943b8c22bf61458e89, type: 3}
-  isDestroyedByRaycast: 0
   timerText: {fileID: 0}
   gamePanel: {fileID: 0}
   _currentLevelCondition: {fileID: 0}
