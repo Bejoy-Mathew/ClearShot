@@ -32,6 +32,7 @@ public class crosshairScript : MonoBehaviour
     int destroyedCount;
     public LevelCondition _currentLevelCondition;
     AudioManager audioManager;
+    private bool isSpriteActive = false;
 
     private void Awake()
     {
@@ -185,11 +186,30 @@ public class crosshairScript : MonoBehaviour
                         Debug.Log("target Hit : " + hit.collider.name);
                         //isDestroyedByRaycast = true;
                         StartCoroutine(Destroying(hit));
-                        
+
                     }
                     else
                     {
                         Debug.Log("you have hit environment");
+                    }
+                }
+                else if (hit.collider != null)
+                {
+                    //hit.collider.gameObject.name=="Burner2"
+                    if (hit.collider != null)
+                    { 
+                    }
+
+                    //Fire1
+                    GameObject spriteToActivate = GameObject.Find("Burners");
+                    if (spriteToActivate != null)
+                    {
+                        spriteToActivate.SetActive(true);
+                        isSpriteActive = true;
+
+                        // Start a timer to deactivate the sprite after 5 seconds
+                        Invoke("DeactivateSprite", 5f);
+
                     }
                 }
             }
@@ -201,6 +221,23 @@ public class crosshairScript : MonoBehaviour
         
 
             
+    }
+
+
+    void DeactivateSprite()
+    {
+        GameObject spriteToDeactivate = GameObject.Find("Burners"); 
+        if (spriteToDeactivate != null)
+        {
+            spriteToDeactivate.SetActive(false);
+            isSpriteActive = false;
+
+            Debug.Log("Sprite deactivated after 5 seconds.");
+        }
+        else
+        {
+            Debug.LogError("No GameObject with the name 'SpriteName' was found.");
+        }
     }
 
     int CountObjectsWithLayer(int layer)
