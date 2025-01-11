@@ -62,4 +62,10 @@ public class TransitionScreen : MonoBehaviour
         }
 
     }
+
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
